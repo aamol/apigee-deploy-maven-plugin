@@ -39,6 +39,8 @@ public class ServerProfile {
 	private Long delay;
 	private Long overridedelay;
 	private Long revision;
+	private String sourceEnvironment;
+	private String destinationEnvironment;
 	
 	public String getApplication() {
 		return application;
@@ -218,4 +220,33 @@ public class ServerProfile {
 		this.revision = revision;
 	}
 
-}
+	public String getSourceEnvironment() {
+		return sourceEnvironment;
+	}
+
+	public void setSourceEnvironment(String sourceEnvironment) {
+		this.sourceEnvironment = sourceEnvironment;
+	}
+
+	public String getDestinationEnvironment() {
+		return destinationEnvironment;
+	}
+
+	public void setDestinationEnvironment(String destinationEnvironment) {
+		this.destinationEnvironment = destinationEnvironment;
+	}
+
+	@Override
+	public String toString() {
+		return "ServerProfile [application=" + application + ", org=" + org + ", credential_user=" + credential_user
+				+ ", credential_pwd=" + credential_pwd + ", hostURL=" + hostURL + ", tokenURL=" + tokenURL
+				+ ", mfaToken=" + mfaToken + ", clientId=" + clientId + ", clientSecret=" + clientSecret
+				+ ", bearerToken=" + bearerToken + ", refreshToken=" + refreshToken + ", authType=" + authType
+				+ ", environment=" + environment + ", api_version=" + api_version + ", api_type=" + api_type
+				+ ", bundle_zip_full_path=" + bundle_zip_full_path + ", profileId=" + profileId + ", options=" + options
+				+ ", delay=" + delay + ", overridedelay=" + overridedelay + ", revision=" + revision
+				+ ", sourceEnvironment=" + sourceEnvironment + ", destinationEnvironment=" + destinationEnvironment
+				+ "]";
+	}
+
+	}

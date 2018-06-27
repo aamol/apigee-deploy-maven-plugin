@@ -721,6 +721,8 @@ public class RestUtil {
             response = executeAPI(profile, deployRestRequest);
 
             if (Options.override) {
+
+            	//System.out.println(response.parseAsString());
                 SeamLessDeploymentStatus deployment3 = response.parseAs(SeamLessDeploymentStatus.class);
                 Iterator<BundleActivationConfig> iter =   deployment3.environment.iterator();
                 while (iter.hasNext()){

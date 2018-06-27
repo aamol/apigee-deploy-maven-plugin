@@ -55,7 +55,7 @@ public class DeployMojo extends GatewayAbstractMojo
 	}
 
 	enum BUILDOPTIONS {
-		NULL,deployinactive,undeploy,delete
+		NULL,deployinactive,undeploy,delete,propagateEnv
 	}
 	
 	enum OPTIONS {
@@ -221,7 +221,7 @@ public class DeployMojo extends GatewayAbstractMojo
 		} 
 		
 	}
-	
+
 	/**
 	 * Activate a bundle revision.
 	 */
@@ -354,6 +354,17 @@ public class DeployMojo extends GatewayAbstractMojo
 						activeRevision=RestUtil.getDeployedRevision(this.getProfile());
 						doDelete(activeRevision);
 						break;
+				case propagateEnv:
+						this.setDeploymentEnv(this.getProfile().getSourceEnvironment());
+						String revisionSource = RestUtil.getDeployedRevision(this.getProfile());
+						this.setDeploymentEnv(this.getProfile().getDestinationEnvironment());
+						String revisionDestination = RestUtil.getDeployedRevision(this.getProfile());
+						System.out.println(
+								"Source Env :"+this.getProfile().getSourceEnvironment() +" revision :" + revisionSource + " Destination Env : "+this.getProfile().getDestinationEnvironment() +" revision :" + revisionDestination);
+						if (!revisionDestination.equalsIgnoreCase(revisionSource)) {
+							RestUtil.Options.override = true;
+							RestUtil.activateBundleRevision(this.getProfile(), revisionSource);
+						}
 				default:     
 						break;
 			}

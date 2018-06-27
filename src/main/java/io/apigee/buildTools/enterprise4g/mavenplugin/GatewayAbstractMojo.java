@@ -204,6 +204,20 @@ public abstract class GatewayAbstractMojo extends AbstractMojo {
 	 */
 	private Long revision;
 	
+	/**
+	 * Source Environment
+	 * 
+	 * @parameter expression="${apigee.source.env}"
+	 */
+	private String sourceEnvironment;
+	
+	/**
+	 * Destination Environment
+	 * 
+	 * @parameter expression="${apigee.destination.env}"
+	 */
+	private String destinationEnvironment;
+	
 	
 	/**
 	* Skip running this plugin.
@@ -243,6 +257,8 @@ public abstract class GatewayAbstractMojo extends AbstractMojo {
 		this.buildProfile.setDelay(this.delay);
 		this.buildProfile.setOverridedelay(this.overridedelay);
 		this.buildProfile.setRevision(this.revision);
+		this.buildProfile.setSourceEnvironment(this.sourceEnvironment);
+		this.buildProfile.setDestinationEnvironment(this.destinationEnvironment);
 		
 		return buildProfile;
 	}
@@ -336,6 +352,16 @@ public abstract class GatewayAbstractMojo extends AbstractMojo {
 
 	public void setRevision(Long revision) {
 		this.revision = revision;
+	}
+
+
+	public String getDeploymentEnv() {
+		return deploymentEnv;
+	}
+
+
+	public void setDeploymentEnv(String deploymentEnv) {
+		this.deploymentEnv = deploymentEnv;
 	}
 	
 }
